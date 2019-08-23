@@ -42,6 +42,7 @@ class App extends Component {
             <div className="App">
                 <aside id="sidebar">
                     <h1 className="App-title">Bloc Chat</h1>
+
                     <RoomList firebase={firebase} activeRoomKey={this.state.activeRoomKey} setActiveRoom={this.setActiveRoom.bind(this)} />
                 </aside>
                     <MessageList firebase={firebase} activeRoomKey={this.state.activeRoomKey} />

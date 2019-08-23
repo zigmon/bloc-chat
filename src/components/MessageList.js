@@ -10,65 +10,47 @@ class MessageList extends Component {
 
         this.state = {
 
-
-            allMessages: [],
-            displayedMessages: [],
-            newMessageText: '',
-            activeRoomKey: null
+            messages: [],
 
         };
-
 
         this.messagesRef = this.props.firebase.database().ref("messages");
     }
 
-    showMessages(activeRoomKey) {
-        this.setState({ allMessages: this.state.allMessages.filter( message => message.roomID === activeRoomKey )});
-    }
+    // showMessages(activeRoomKey) {
+       // this.setState({ messages: this.state.messages.filter( message => message.roomID === activeRoomKey )});
+    //}
 
     componentDidMount() {
         this.messagesRef.on('child_added', snapshot => {
-
             const message = snapshot.val();
             message.key = snapshot.key;
-            this.setState({ displayedMessages: this.state.allMessages.concat( message ) }, () => {
-
-                this.showMessages( this.props.activeRoomKey )
-            });
+            this.setState({ messages: this.state.messages.concat( message ) });
         });
     }
 
 
-    componentWillReceiveProps(nextProps) {
-        this.showMessages( nextProps.activeRoomKey );
-    }
-
-
-
-
-
     render() {
         return (
+
             <section className="messages-component">
-                <h2 className="room-name">{ this.props.activeRoomKey ? this.props.activeRoomKey : '' }</h2>
-                {this.state.allMessages.map(message =>
-                    <ul id="message-list">
-                        {this.state.displayedMessages.map( message =>
-                            <li key={message.key}>
-                                <div className="username">
-                                    { message.username }
-                                </div>
-                                <div className="content">
-                                    { message.content }
-                                </div>
-                            </li>
-                        )}
+                <div>
+                    <h2>Messages:</h2>
+                    <ul>
+                        {this.state.messages
+                            .filter(message => message.roomId === this.props.activeRoom)
+                            .map((message, key) => (
+                                <li key={message.key}>
+                                    {message.username}:&nbsp;
+                                    {message.content}
+                                </li>
+                            ))}
                     </ul>
-                )}
+                </div>
             </section>
         );
-    }
 
+    }
 }
 
-    export default MessageList;
+export default MessageList;

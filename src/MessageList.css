@@ -1,4 +1,4 @@
-#messages-component {
+.messages-component {
     position: fixed;
     background: white;
     left: 25%;
@@ -7,7 +7,7 @@
     overflow: scroll;
 }
 
-h2.room-name {
+.room-name {
     border-bottom: 2px solid hsla(44, 30%, 52%, 0.2);
     color: rgb(0, 160, 60);
     font-family: 'Rockwell', cursive;
@@ -19,7 +19,7 @@ h2.room-name {
 #message-list li {
     list-style-type: none;
     font-size: 0.85rem;
-    clear: both;
+
     overflow: hidden;
     margin-bottom: 0.5rem;
 }
