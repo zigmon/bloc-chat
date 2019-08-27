@@ -24,15 +24,14 @@ class App extends Component {
         super(props);
 
         this.state = {
-            activeRoom: undefined,
-            activeRoomKey: '',
-            activeRoomName: ''
-
+            activeRoom: null,
+            activeRoomKey: null
         }
     }
 
     setActiveRoom(room) {
-        this.setState({activeRoom: room, activeRoomKey: room.key});
+        this.setState({activeRoom: room},
+                    {activeRoomKey: room.key});
     }
 
 
@@ -42,10 +41,9 @@ class App extends Component {
             <div className="App">
                 <aside id="sidebar">
                     <h1 className="App-title">Bloc Chat</h1>
-
-                    <RoomList firebase={firebase} activeRoomKey={this.state.activeRoomKey} setActiveRoom={this.setActiveRoom.bind(this)} />
+                    <RoomList firebase={firebase} activeRoom={this.state.activeRoom} activeRoomKey={this.state.activeRoomKey} setActiveRoom={(e) => this.setActiveRoom(e)}/>
                 </aside>
-                    <MessageList firebase={firebase} activeRoomKey={this.state.activeRoomKey} />
+                    <MessageList firebase={firebase} activeRoom={this.state.activeRoom} activeRoomKey={this.state.activeRoomKey}    setActiveRoom={(e) => this.setActiveRoom(e)}/>
             </div>
         );
     }
