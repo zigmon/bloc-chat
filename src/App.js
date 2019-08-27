@@ -30,13 +30,16 @@ class App extends Component {
     }
 
     setActiveRoom(room) {
-        this.setState({activeRoom: room},
-                    {activeRoomKey: room.key});
+        this.setState({
+            activeRoom: room,
+            activeRoomKey: room.key
+        });
     }
 
 
 
     render() {
+        console.log('FLAG --', this.state.messages.filter((message) => message.roomId === this.props.activeRoomKey))
         return (
             <div className="App">
                 <aside id="sidebar">

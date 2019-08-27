@@ -30,7 +30,7 @@ class MessageList extends Component {
                         <h2>Messages:</h2>
                         <ul>
                             {this.state.messages
-                                .filter(message => message.roomId === this.props.activeRoomKey)
+                                .filter((message) => message.roomId === this.props.activeRoomKey)
                                 .map((message, key) => (
                                     <li key={message.key}>
                                         {message.username}:&nbsp;
