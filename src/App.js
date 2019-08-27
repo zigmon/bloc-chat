@@ -39,14 +39,14 @@ class App extends Component {
 
 
     render() {
-        console.log('FLAG --', this.state.messages.filter((message) => message.roomId === this.props.activeRoomKey))
+        //console.log('FLAG --', this.state.messages.filter((message) => message.roomId === this.props.activeRoomKey))
         return (
             <div className="App">
                 <aside id="sidebar">
                     <h1 className="App-title">Bloc Chat</h1>
                     <RoomList firebase={firebase} activeRoom={this.state.activeRoom} activeRoomKey={this.state.activeRoomKey} setActiveRoom={(e) => this.setActiveRoom(e)}/>
                 </aside>
-                    <MessageList firebase={firebase} activeRoom={this.state.activeRoom} activeRoomKey={this.state.activeRoomKey}    setActiveRoom={(e) => this.setActiveRoom(e)}/>
+                    <MessageList firebase={firebase} activeRoom={this.state.activeRoom} activeRoomKey={this.state.activeRoomKey} setActiveRoom={(e) => this.setActiveRoom(e)}/>
             </div>
         );
     }

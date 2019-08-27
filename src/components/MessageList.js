@@ -24,13 +24,11 @@ class MessageList extends Component {
     render() {
 
             return (
-
                 <section className="messages-component">
                     <div>
                         <h2>Messages:</h2>
                         <ul>
-                            {this.state.messages
-                                .filter((message) => message.roomId === this.props.activeRoomKey)
+                                {this.state.messages.filter((message) => message.roomID === Number(this.props.activeRoomKey))
                                 .map((message, key) => (
                                     <li key={message.key}>
                                         {message.username}:&nbsp;
