@@ -29,10 +29,11 @@ class MessageList extends Component {
                         <h2>Messages:</h2>
                         <ul>
                                 {this.state.messages.filter((message) => message.roomID === Number(this.props.activeRoomKey))
-                                .map((message, key) => (
-                                    <li key={message.key}>
+                                .map((message, index) => (
+                                    <li key={index} >
                                         {message.username}:&nbsp;
-                                        {message.content}
+                                        {message.content}:&nbsp;
+                                        {message.sentAt}
                                     </li>
                                 ))}
                         </ul>

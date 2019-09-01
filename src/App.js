@@ -3,6 +3,7 @@ import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -18,14 +19,20 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+//Create an instance of the Google Provider object for user auth
+var provider = new firebase.auth.GoogleAuthProvider();
+
 class App extends Component {
 
     constructor (props) {
         super(props);
 
         this.state = {
+            //changed activeRoom and activeRoomKey from 'null' to 'undefined'
             activeRoom: null,
-            activeRoomKey: null
+            activeRoomKey: null,
+            //added 'username: null'
+            user: null
         }
     }
 
@@ -36,18 +43,40 @@ class App extends Component {
         });
     }
 
+    setUser(newUser) {
+        if(newUser !== null) {
+            this.setState({ user: newUser });
+        }
+        else {
+            this.setState({ user: null });
+        }
+    }
 
 
     render() {
-        //console.log('FLAG --', this.state.messages.filter((message) => message.roomId === this.props.activeRoomKey))
         return (
-            <div className="App">
-                <aside id="sidebar">
-                    <h1 className="App-title">Bloc Chat</h1>
-                    <RoomList firebase={firebase} activeRoom={this.state.activeRoom} activeRoomKey={this.state.activeRoomKey} setActiveRoom={(e) => this.setActiveRoom(e)}/>
+            <div>
+                <header>
+                    <User firebase={firebase}
+                          user={this.state.user}
+                          setUser={(newUser) => this.setUser(newUser)}/>
+                </header>
+
+                <aside>
+                    <RoomList firebase={firebase}
+                              activeRoom={this.state.activeRoom}
+                              activeRoomKey={this.state.activeRoomKey}
+                              setActiveRoom={(e) => this.setActiveRoom(e)}/>
                 </aside>
-                    <MessageList firebase={firebase} activeRoom={this.state.activeRoom} activeRoomKey={this.state.activeRoomKey} setActiveRoom={(e) => this.setActiveRoom(e)}/>
+
+                <main>
+                    <MessageList firebase={firebase}
+                                 activeRoom={this.state.activeRoom}
+                                 activeRoomKey={this.state.activeRoomKey}
+                                 setActiveRoom={(e) => this.setActiveRoom(e)}/>
+                </main>
             </div>
+
         );
     }
 }
