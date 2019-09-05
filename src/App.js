@@ -20,7 +20,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 //Create an instance of the Google Provider object for user auth
-var provider = new firebase.auth.GoogleAuthProvider();
+const provider = new firebase.auth.GoogleAuthProvider();
 
 class App extends Component {
 
@@ -28,10 +28,8 @@ class App extends Component {
         super(props);
 
         this.state = {
-            //changed activeRoom and activeRoomKey from 'null' to 'undefined'
             activeRoom: null,
             activeRoomKey: null,
-            //added 'username: null'
             user: null
         }
     }
@@ -44,12 +42,14 @@ class App extends Component {
     }
 
     setUser(newUser) {
+
         if(newUser !== null) {
             this.setState({ user: newUser });
         }
         else {
             this.setState({ user: null });
         }
+
     }
 
 
@@ -60,6 +60,7 @@ class App extends Component {
                     <User firebase={firebase}
                           user={this.state.user}
                           setUser={(newUser) => this.setUser(newUser)}/>
+
                 </header>
 
                 <aside>
