@@ -29,56 +29,57 @@ class MessageList extends Component {
         }
     }
 
-
     handleSubmit(e) {
         e.preventDefault();
-
-        // Define user variable - use 'Guest' if null
             const username = this.props.user === null ? 'Guest' : this.props.user;
                 this.messagesRef.push({
-                    username: username,
+                    username: username.displayName,
                     content: this.state.newMessage,
+                    // added back removed .props. between this and firebase - wasn't  certain it's necessary - but caused undefined error
                     sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
                     roomID: this.props.activeRoomKey
                 });
                 // Clear textbox after creating new message
                 this.setState({newMessage: ''});
 
-
     }
 
     handleChange(e) {
         this.setState({ newMessage: e.target.value });
+        //this.refs.messageList.scrollIntoView();
     }
 
-
-    convertTimestampToTime(timestamp) {
-        // Create a new JavaScript Date object based on the timestamp
-        // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-        const date = new Date(timestamp*1000);
+    timeConverter(timestamp) {
+        let date = new Date(timestamp);
+        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let year = date.getFullYear();
+        let month = months[date.getMonth()];
+        let d = date.getDate();
         // Hours part from the timestamp
-        const hours = date.getHours();
+        let hours = date.getHours();
         // Minutes part from the timestamp
-        const minutes = date.getMinutes();
+        let minutes = date.getMinutes();
         // Seconds part from the timestamp
-        const seconds = date.getSeconds();
+        let seconds = date.getSeconds();
+        // Will display time in 10:30:23 format
+        let formattedTime = ' ' + month + d + ' ' + year + ' ' + hours + ':' + minutes + ':' + seconds ;
 
-        return [date, hours, minutes, seconds];
+        return formattedTime;
+
     }
-
     render() {
 
             return (
                 <section className="messages-component">
                     <div>
-                        <h2>Messages:</h2>
+                        <h2>Room Messages:</h2>
                         <ul>
-                                {this.state.messages.filter((message) => message.roomID === Number(this.props.activeRoomKey))
+                                {this.state.messages.filter((message) => message.roomID === this.props.activeRoomKey)
                                     .map((message, index) => (
                                         <li key={index}>
-                                             {message.username}
-                                             {message.content}
-                                             {this.convertTimestampToTime(message.sentAt)}
+                                            <div>{message.username}</div>
+                                            <div>{message.content}</div>
+                                            {this.timeConverter(message.sentAt)}
                                         </li>
                                 ))}
                         </ul>
@@ -89,15 +90,20 @@ class MessageList extends Component {
                             <input type="text"
                                    name = "newMessageField"
                                    value={this.state.newMessage}
-                                   onMessageSubmit={(e) => this.handleMessageSubmit(e)}
-                                   onChange={ (e) => this.handleChange(e) }/>
+                                   onKeyPress={(e) => this.handleMessageSubmit(e)}
+                                   onChange={ (e) => this.handleChange(e) }
+                                />
 
                             <input ref="newMessageFormSubmit" type="submit" value="Enter" />
                         </form>
                     </div>
+
+
                 </section>
 
             );
+
+
 
         }
     }

@@ -15,9 +15,10 @@
     background-color: rgba(3, 130, 40, 0.1);
 }
 
-.room-name:active {
+.room-list:active {
     box-shadow: 0 2px;
     transform: translateY(3px);
+    font-weight: bold;
 }
 
 form#create-room {
@@ -32,7 +33,7 @@ form#create-room {
 
 #create-room label {
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 #create-room input[type="text"] {

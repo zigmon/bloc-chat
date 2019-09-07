@@ -55,7 +55,7 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+<main>
                 <header>
                     <User firebase={firebase}
                           user={this.state.user}
@@ -63,20 +63,22 @@ class App extends Component {
 
                 </header>
 
-                <aside>
+                <section className="sidebar">
                     <RoomList firebase={firebase}
                               activeRoom={this.state.activeRoom}
-                              activeRoomKey={this.state.activeRoomKey}
+                              activeRoomKey={Number(this.state.activeRoomKey)}
                               setActiveRoom={(e) => this.setActiveRoom(e)}/>
-                </aside>
+                </section>
 
-                <main>
+                <section className="chat-room">
                     <MessageList firebase={firebase}
                                  activeRoom={this.state.activeRoom}
                                  activeRoomKey={this.state.activeRoomKey}
-                                 setActiveRoom={(e) => this.setActiveRoom(e)}/>
-                </main>
-            </div>
+                                 setActiveRoom={(e) => this.setActiveRoom(e)}
+                                 user={this.state.user}/>
+                </section>
+</main>
+
 
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '.././RoomList.css';
+//import '.././RoomList.css';
 
 
 class RoomList extends Component {
@@ -41,9 +41,8 @@ class RoomList extends Component {
     {
         return (
             <section className="room-list">
-
                 {this.state.rooms.map(room =>
-                    <li key={room.key}>
+                    <li key={room.index}>
                         <button className="room-name" onClick={ () => this.props.setActiveRoom(room) }>{ room.name }</button>
                     </li>
                 )}
