@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '.././MessageList.css';
+import '.././App.css';
 
 
 class MessageList extends Component {
@@ -7,7 +7,8 @@ class MessageList extends Component {
         super(props);
         this.state = {
             messages: [],
-            newMessage: ''
+            newMessage: '',
+            username: null
         };
 
         this.messagesRef = this.props.firebase.database().ref('messages');
@@ -31,11 +32,10 @@ class MessageList extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-            const username = this.props.user === null ? 'Guest' : this.props.user;
+            const username this.props.user === null ? setUser("Guest") : this.props.user;
                 this.messagesRef.push({
-                    username: username.displayName,
+                    username: username,
                     content: this.state.newMessage,
-                    // added back removed .props. between this and firebase - wasn't  certain it's necessary - but caused undefined error
                     sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
                     roomID: this.props.activeRoomKey
                 });
@@ -68,11 +68,10 @@ class MessageList extends Component {
 
     }
     render() {
-
             return (
                 <section className="messages-component">
                     <div>
-                        <h2>Room Messages:</h2>
+                        <h2>Room {this.props.roomName} Messages:</h2>
                         <ul>
                                 {this.state.messages.filter((message) => message.roomID === this.props.activeRoomKey)
                                     .map((message, index) => (

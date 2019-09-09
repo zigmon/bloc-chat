@@ -37,7 +37,8 @@ class App extends Component {
     setActiveRoom(room) {
         this.setState({
             activeRoom: room,
-            activeRoomKey: room.key
+            activeRoomKey: room.key,
+            roomName: room.displayName
         });
     }
 
@@ -47,7 +48,7 @@ class App extends Component {
             this.setState({ user: newUser });
         }
         else {
-            this.setState({ user: null });
+            this.setState({ user: "Guest" });
         }
 
     }
@@ -64,6 +65,7 @@ class App extends Component {
                 </header>
 
                 <section className="sidebar">
+                    <h1 id={"sidebar-title"}>Bloc Chat</h1>
                     <RoomList firebase={firebase}
                               activeRoom={this.state.activeRoom}
                               activeRoomKey={Number(this.state.activeRoomKey)}

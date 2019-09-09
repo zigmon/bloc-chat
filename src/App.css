@@ -1,12 +1,40 @@
-#sidebar {
+.sidebar {
   float: left;
-  width: 25%;
-  background-color: #dedede;
-  padding: 35px;
+  width: 35%;
+  background-color: lightgray;
+  height: 100%;
+  overflow-y: scroll;
+  color: #4a4a4a;
+}
+  /*
+ padding: 35px;
+
   margin-right: 35px;
   min-height: 100%;
   height: 100%;
   overflow-y: scroll;
+  font-family: sans-serif;
+  color: #4a4a4a;
+  */
+
+
+
+h1.sidebar-title {
+  font-size: 2em;
+  color: #4a4a4a;
+  margin-top: 0;
+  margin-bottom: 0;
+  float: left;
+  margin-right: 20px;
+}
+
+h2.sidebar-room {
+  font-size: 1.15em;
+  color: #979797;
+  margin: 0 0 0.85em 0;
+  display: inline-block;
+}
+
 
   /*
 
@@ -20,25 +48,123 @@
   z-index: 3;
 
   */
-}
+
 
 #sidebar button:hover span {
-  color: rgb(0, 120, 60);
+  color: darkblue;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 200px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.65em;
+.room-name {
+  border:none;
+  outline: none;
+  background-color: lightsteelblue;
+  color: black;
+  height: 30px;
   margin-left: 2px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+h1.sidebar-title {
+  font-size: 2em;
+  color: #4a4a4a;
+  margin-top: 0;
+  margin-bottom: 0;
+  float: left;
+  margin-right: 20px;
+}
+
+
+.room-name:hover {
+  cursor: pointer;
+  color: rgb(0, 150, 40);
+  background-color: rgba(3, 130, 40, 0.1);
+}
+
+.room-list:active {
+  box-shadow: 0 2px;
+  transform: translateY(3px);
+  font-weight: bold;
+}
+
+form#create-room {
+  margin-right: 0;
+  right: 0;
+  top: -2px;
+  padding: 1rem;
+  position: absolute;
+  width: 50%;
+  height: 40px;
+}
+
+#create-room label {
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+#create-room input[type="text"] {
+  width: 87%;
+  background: rgba(0, 150, 40, 0.3);
+  padding: 0.3rem 0.66rem;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 3px;
+  height: 2.5rem;
+  float: left;
+  font-size: 1rem;
+}
+
+#create-room input[type="submit"] {
+  border: none;
+  padding: 0.1rem;
+  color: rgba(50, 69, 220, 0.5);
+  width: 10%;
+  font-size: 1.5rem;
+  float: left;
+  line-height: 0.7rem;
+  height: 2.5rem;
+  margin-left: 3%;
+  border-radius: 3px;
+}
+
+#create-room input[type="submit"]:hover {
+  cursor: pointer;
+  background: rgba(255, 69, 0, 0.2);
+}
+
+#create-room input[type="submit"]:active {
+  box-shadow: 0 2px;
+  transform: translateY(3px);
+}
+
+.messages-component {
+  position: fixed;
+  background: white;
+  left: 25%;
+  width: 75%;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.room-name {
+  border-bottom: 2px solid hsla(44, 30%, 52%, 0.2);
+  color: rgb(0, 160, 60);
+  font-family: 'Rockwell', cursive;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 1rem 1rem 1rem;
+}
+
+#message-list li {
+  list-style-type: none;
+  font-size: 0.85rem;
+
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+#message-list li .content {
+  color: black;
+  display: inline-block;
+  width: 90%;
 }
