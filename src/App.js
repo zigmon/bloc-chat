@@ -43,20 +43,13 @@ class App extends Component {
     }
 
     setUser(newUser) {
-
-        if(newUser !== null) {
             this.setState({ user: newUser });
-        }
-        else {
-            this.setState({ user: "Guest" });
-        }
-
     }
 
 
     render() {
         return (
-<main>
+            <main>
                 <header>
                     <User firebase={firebase}
                           user={this.state.user}
@@ -78,8 +71,9 @@ class App extends Component {
                                  activeRoomKey={this.state.activeRoomKey}
                                  setActiveRoom={(e) => this.setActiveRoom(e)}
                                  user={this.state.user}/>
+
                 </section>
-</main>
+            </main>
 
 
         );

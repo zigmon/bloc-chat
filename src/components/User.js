@@ -22,10 +22,11 @@ class User extends Component {
     }
 
     render() {
+        // I may want to change this conditional render based on my message list conditional additions
         if(this.props.user === null) {
             return (
                 <span className='userLoginButtons'>
-                    <span>You are not yet signed in - you appear as 'Guest'  </span>
+                    <span>You are not yet signed in - you must be signed in to add messages</span>
                     <div>  </div>
                     <button onClick={(e) => this.handleClick(e)} value="Sign In">SIGN IN</button>
                 </span>
